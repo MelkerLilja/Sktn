@@ -1,0 +1,6 @@
+framework module Pods_SktnProject_SktnProjectUITests {
+  umbrella header "Pods-SktnProject-SktnProjectUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
