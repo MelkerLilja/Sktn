@@ -9,14 +9,14 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var aboutLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         mainView.addBackground()
         //stackView.addColor()
         aboutLabel.text = Constants.Texts.aboutSktn

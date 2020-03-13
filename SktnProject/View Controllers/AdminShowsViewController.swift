@@ -59,19 +59,19 @@ class AdminShowsViewController: UIViewController {
     
     func checkForUpdates() {
         db.collection("shows").whereField("timeStamp", isGreaterThan: Timestamp())
-        .addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                print("Error fetching snapshots: \(error!)")
-                return
-            }
-            snapshot.documentChanges.forEach { diff in
-                if (diff.type == .added) {
-                    self.shows.append(Show(dictionary: diff.document.data())!)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+            .addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error fetching snapshots: \(error!)")
+                    return
+                }
+                snapshot.documentChanges.forEach { diff in
+                    if (diff.type == .added) {
+                        self.shows.append(Show(dictionary: diff.document.data())!)
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
                 }
-            }
         }
     }
     
@@ -82,9 +82,9 @@ extension AdminShowsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return shows.count
-     }
-     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! AdminShowsCell
         let show = shows[indexPath.row]
         
@@ -92,29 +92,16 @@ extension AdminShowsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.textAlignment = .center
         cell.dateLabel.text = show.date
         cell.titleLabel.textAlignment = .center
-         
+        
         cell.selectionStyle = .none
         
         return cell
-     }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ListViewController") as? ListViewController
         vc?.detailShow = shows[indexPath.row].title
         self.navigationController?.pushViewController(vc!, animated: true)
-    }
-
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        if segue.identifier == "detailSegue" {
-            if let destVC = segue.destination as? UINavigationController,
-                let targetController = destVC.topViewController as? DetailViewController {
-                targetController.titleText = searchedCity
-            }
-        }
-        */
- 
     }
 }
 

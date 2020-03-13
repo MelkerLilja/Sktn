@@ -250,10 +250,10 @@
 			children = (
 				6F11AD16241AC250003B0322 /* CustomCells */,
 				6F88B54224085DF800100D27 /* Show.swift */,
-				6F9A1F872414239D00434D29 /* Constants.swift */,
-				6F9A1F81241281A000434D29 /* Utilities.swift */,
-				6F11AD042416B1B0003B0322 /* PhoneHandler.swift */,
 				6F11AD0E241A66C1003B0322 /* User.swift */,
+				6F9A1F81241281A000434D29 /* Utilities.swift */,
+				6F9A1F872414239D00434D29 /* Constants.swift */,
+				6F11AD042416B1B0003B0322 /* PhoneHandler.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

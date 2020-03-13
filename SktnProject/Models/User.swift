@@ -29,8 +29,6 @@ struct User {
     }
 }
 
-
-
 extension User : UserSerializable {
     init?(dictionary:[String: Any]) {
         guard let firstname = dictionary["firstname"] as? String,

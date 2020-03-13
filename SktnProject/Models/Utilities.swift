@@ -41,10 +41,10 @@ extension UITextField {
         //Icon setup
         let image = UIImage(systemName: fsSymbol)
         let iconView = UIImageView(frame:
-                      CGRect(x: 0, y: 5, width: 30, height: 30))
+            CGRect(x: 0, y: 5, width: 30, height: 30))
         iconView.image = image
         let iconContainerView: UIView = UIView(frame:
-                      CGRect(x: 20, y: 0, width: 50, height: 40))
+            CGRect(x: 20, y: 0, width: 50, height: 40))
         iconView.tintColor = UIColor.darkGray
         iconContainerView.addSubview(iconView)
         leftView = iconContainerView
@@ -94,7 +94,7 @@ extension UIView {
             self.alpha = 1.0
         }, completion: completion)
     }
-
+    
     func fadeOut(duration: TimeInterval = 1.0, delay: TimeInterval = 3.0, completion: @escaping (Bool) -> Void = {(finished: Bool) -> Void in}) {
         UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.alpha = 0.0
@@ -107,15 +107,15 @@ extension UIView {
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.transform = CGAffineTransform.identity
         }, completion: nil)
-
+        
     }
     
     func bounce() {
         self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-
+        
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: CGFloat(0.20),initialSpringVelocity: CGFloat(6.0),options: UIView.AnimationOptions.allowUserInteraction,animations: {
-                self.transform = CGAffineTransform.identity
-            }, completion: { Void in()  }
+            self.transform = CGAffineTransform.identity
+        }, completion: { Void in()  }
         )
     }
 }

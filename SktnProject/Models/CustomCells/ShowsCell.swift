@@ -9,7 +9,7 @@
 import UIKit
 
 class ShowsCell: UITableViewCell {
-
+    
     @IBOutlet weak var showImageView: UIImageView!
     @IBOutlet weak var showTitleLabel: UILabel!
     @IBOutlet weak var showDescriptionLabel: UITextView!

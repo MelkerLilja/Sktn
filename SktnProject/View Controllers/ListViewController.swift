@@ -18,7 +18,7 @@ class ListViewController: UIViewController {
     var detailShow: String = ""
     var db: Firestore!
     var users = [User]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +32,7 @@ class ListViewController: UIViewController {
         loadData()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.tabBarController?.tabBar.isHidden = true
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         viewBehindTableView.backgroundColor = UIColor(white: 1, alpha: 0.5)
@@ -61,7 +61,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         
         return users.count
     }
-     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! UserCell
@@ -69,31 +69,10 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let user = users[indexPath.row]
         
         cell.userNameLabel.text = "\(user.firstname) \(user.lastname)"
-
+        
         cell.selectionStyle = .none
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ListViewController") as? ListViewController
-        vc?.detailShow = shows[indexPath.row].title
-        self.navigationController?.pushViewController(vc!, animated: true)
-        */
-    }
-
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        if segue.identifier == "detailSegue" {
-            if let destVC = segue.destination as? UINavigationController,
-                let targetController = destVC.topViewController as? DetailViewController {
-                targetController.titleText = searchedCity
-            }
-        }
-        */
- 
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -110,7 +89,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return UITableView.automaticDimension
     }
-
+    
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 44.0
     }

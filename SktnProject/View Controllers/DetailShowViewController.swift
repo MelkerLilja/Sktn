@@ -17,7 +17,7 @@ class DetailShowViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     @IBOutlet weak var attendButton: UIButton!
-
+    
     
     var db: Firestore!
     var detailShow: String = ""
@@ -112,18 +112,18 @@ class DetailShowViewController: UIViewController {
         // Get user info from firestore
         
         let docRef = db.collection("users").document("\(userUid)")
-         docRef.getDocument(source: .server) { (document, error) in
-             if let error = error {
-                 print("\(error.localizedDescription)")
-             } else {
-                 if let document = document {
-                     guard let data = document.data() else { return }
-                     let user = User(dictionary: data)
-                     guard user != nil else { return }
-                     self.user = user
-                 }
-             }
-         }
+        docRef.getDocument(source: .server) { (document, error) in
+            if let error = error {
+                print("\(error.localizedDescription)")
+            } else {
+                if let document = document {
+                    guard let data = document.data() else { return }
+                    let user = User(dictionary: data)
+                    guard user != nil else { return }
+                    self.user = user
+                }
+            }
+        }
     }
     
     func updateUI() {
@@ -158,14 +158,14 @@ class DetailShowViewController: UIViewController {
             self.attendingUI()
         } else {
             let db = Firestore.firestore()
-                db.collection("\(detailShow)").document("\(userUid)").delete() { err in
-                   if let err = err {
-                       print("Error removing document: \(err)")
-                   } else {
-                        self.isAttending = false
-                        self.attendButton.bounce()
-                        self.notAttendingUI()
-                   }
+            db.collection("\(detailShow)").document("\(userUid)").delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    self.isAttending = false
+                    self.attendButton.bounce()
+                    self.notAttendingUI()
+                }
             }
         }
     }
