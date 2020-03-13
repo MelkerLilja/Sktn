@@ -57,7 +57,10 @@ class SignUpViewController: UIViewController {
         
         return nil
     }
-    
+    /*
+     Checks the textfields if they are valid. Checks if the email and password is valid in Firebase Auth
+     If succesfull will create a user both for firestore and authentication
+     */
     @IBAction func signUpButtonTapped(_ sender: Any) {
         // Validate the fields
         let error = validateFields()
@@ -99,7 +102,7 @@ class SignUpViewController: UIViewController {
             }
         }
     }
-    
+    // animates and shows the error message, shakes the sign Up button
     func showError(_ message: String) {
         errorLabel.text = message
         self.errorLabel.alpha = 0
@@ -110,7 +113,7 @@ class SignUpViewController: UIViewController {
         self.signUpButton.shake()
         
     }
-    
+    // transition to userTabBar for users// Admins can't sign up through sign up page
     func transitionToHome(uid: String) {
         let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.userVC) as? UserTabBar
         UserTabBar.userUid = uid

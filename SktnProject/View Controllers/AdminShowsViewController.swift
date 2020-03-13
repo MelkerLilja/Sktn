@@ -37,12 +37,14 @@ class AdminShowsViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
     }
-    
+    // Hides the navigationBar and shows the tabBar. The opposite happens in ListViewController
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = false
     }
-    
+    /* Get all the documents of the collection shows. Creates the every document into Show
+     finally reloads the tableview the user can see the shows
+     */
     func loadData() {
         db.collection("shows").getDocuments() {
             querySnapshot, error in
@@ -56,7 +58,10 @@ class AdminShowsViewController: UIViewController {
             }
         }
     }
-    
+    /*
+     Checks if any new shows been created and added to Firestore.
+     If thats the case, TableView will be reloaded
+     */
     func checkForUpdates() {
         db.collection("shows").whereField("timeStamp", isGreaterThan: Timestamp())
             .addSnapshotListener { querySnapshot, error in

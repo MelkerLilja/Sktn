@@ -52,11 +52,11 @@ class CreateViewController: UIViewController, UITextViewDelegate {
         descriptionView.textColor = UIColor.darkGray
         descriptionView.backgroundColor = UIColor(white: 1, alpha: 0.7)
     }
-    
+    // Feels if you tapps outside the view while selecting date for event. Closes the view for choosing date
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
     }
-    
+    // Formats the datepicker to a string and puts it in dateLabel
     @objc func dateChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM d, h:mm a"
@@ -68,7 +68,11 @@ class CreateViewController: UIViewController, UITextViewDelegate {
         getImageFromPhone()
     }
     
-    
+    /*
+     Validates if all the fields are filled and if a picture been chosen for the event.
+     Uploads the date to firestore so AdminShowVC and ShowsVC can retrieve all the documents for the collection
+     shows. Also UIAlertController if succesfull, when admin press ok, all fields and image will be cleaned
+     */
     @IBAction func saveButtonTapped(_ sender: Any) {
         let error = validateFields()
         
@@ -112,20 +116,18 @@ class CreateViewController: UIViewController, UITextViewDelegate {
                         
                         self.present(alertController, animated: true, completion: nil)
                     }
-                    
-                    //
                 }
             }
         }
     }
-    
+    // Through delegate the UITextView feels when admin types. Will remove the placeholder text
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.darkGray {
             textView.text = nil
             textView.textColor = UIColor.black
         }
     }
-    
+    // Through delegate the textfield will put placeholder text when admin doesn't type
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Write event description here"

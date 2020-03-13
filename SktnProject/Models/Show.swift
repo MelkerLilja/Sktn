@@ -14,7 +14,6 @@ protocol DocumentSerializable {
     init?(dictionary:[String: Any])
 }
 
-
 struct Show {
     
     var image: String

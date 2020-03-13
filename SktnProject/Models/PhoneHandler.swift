@@ -9,6 +9,10 @@
 import MobileCoreServices
 import UIKit
 
+/*
+ This is a class for the handeling the phones library
+ */
+
 class DSCameraHandler: NSObject {
     
     private let imagePicker = UIImagePickerController()

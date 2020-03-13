@@ -39,7 +39,7 @@ class ListViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
     }
-    
+    // Gets information for all who attends to the specific show
     func loadData() {
         db.collection(detailShow).getDocuments() {
             querySnapshot, error in
@@ -65,16 +65,13 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! UserCell
-        
         let user = users[indexPath.row]
-        
         cell.userNameLabel.text = "\(user.firstname) \(user.lastname)"
-        
         cell.selectionStyle = .none
-        
         return cell
     }
     
+    // Headersection to display the Title for the show
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let vw = UIView()
         let label = UILabel(frame: CGRect(x: 10, y: 10, width: view.frame.size.width, height: 25))

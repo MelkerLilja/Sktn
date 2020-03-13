@@ -49,6 +49,9 @@ class DetailShowViewController: UIViewController {
         descriptionView.backgroundColor = UIColor(white: 1, alpha: 0.7)
     }
     
+    /*
+     Checks if the user is attending or not the a event. If attending the UI for the button attend will change
+     */
     func checkIfUserIsAttending() {
         
         let docRef = db.collection("\(detailShow)").document("\(userUid)")
@@ -125,9 +128,8 @@ class DetailShowViewController: UIViewController {
             }
         }
     }
-    
+    // Updates the UI when loaddata() have passed correctly
     func updateUI() {
-        //uppdaterar ui här så fixa alla outlets
         self.showLabel.text = self.shows?.title
         self.dateLabel.text = self.shows?.date
         self.descriptionView.text = self.shows?.description
@@ -143,7 +145,7 @@ class DetailShowViewController: UIViewController {
         }
         self.attendButton.styleButton()
     }
-    
+    // Attends the user to the specific show. Collection is the show, and the documents will be the users
     @IBAction func attendButtonTapped(_ sender: Any) {
         if isAttending == false {
             let db = Firestore.firestore()

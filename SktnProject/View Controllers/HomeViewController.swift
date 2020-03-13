@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         mainView.addBackground()
-        //stackView.addColor()
         aboutLabel.text = Constants.Texts.aboutSktn
     }
 }

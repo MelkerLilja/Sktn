@@ -40,12 +40,15 @@ class ShowsViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
     }
-    
+    // Hides the navigationBar and shows the tabBar. The opposite happens in DetailShowViewController
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    /* Get all the documents of the collection shows. Creates the every document into Show
+     finally reloads the tableview the user can see the shows
+     */
     func loadData() {
         db.collection("shows").getDocuments() {
             querySnapshot, error in
@@ -86,7 +89,7 @@ extension ShowsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    // method to run when table view cell is tapped
+    // Transfers the user to DetailShowVC
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "DetailShowViewController") as? DetailShowViewController
         vc?.detailShow = shows[indexPath.row].title

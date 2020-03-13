@@ -27,5 +27,4 @@ class AdminTabBar: UITabBarController {
         UIGraphicsEndImageContext()
         
     }
-    
 }
